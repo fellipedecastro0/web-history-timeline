@@ -43,7 +43,6 @@ const marcosDaWeb: MileStone[] = [
     titulo: 'A Era da Web 2.0 e o AJAX',
     descricao: 'A internet deixa de ser uma via de mão única. O conceito de Web 2.0 foca no conteúdo gerado pelo usuário, dando origem às grandes redes sociais e blogs. Tecnicamente, a adoção do AJAX (Asynchronous JavaScript and XML) revoluciona a experiência: páginas como o Gmail e o Google Maps passam a atualizar dados em tempo real sem precisar recarregar a página inteira.',
     imagem: '/imagens/og-gmail.jpg',
-    ehLogo: true,
   },
   {
     id: 5,
@@ -57,7 +56,8 @@ const marcosDaWeb: MileStone[] = [
     ano: '2014 - 2015',
     titulo: 'HTML5 e a Ascensão das SPAs',
     descricao: 'A padronização do HTML5 traz recursos nativos para vídeo e áudio, matando tecnologias antigas como o Flash. No front-end, bibliotecas e frameworks baseados em componentes (como React, Angular e Vue) dominam o mercado. A web consolida o conceito de Single Page Applications (SPAs), onde o site inteiro funciona de forma tão fluida quanto um aplicativo de celular.',
-    imagem: '/imagens/web.jpg'
+    imagem: '/imagens/web.jpg',
+    ehLogo: true,
   },
   {
     id: 7,
@@ -91,7 +91,6 @@ function App() {
         {/* Linha Vertical Mágica */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500/10 via-blue-500/50 to-blue-500/10 rounded-full"></div>
 
-        {/* O Loop limpo e refatorado chamando o Componente */}
         {marcosDaWeb.map((marco, index) => {
           const isLeft = index % 2 === 0;
 

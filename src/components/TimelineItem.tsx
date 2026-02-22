@@ -11,35 +11,28 @@ export function TimelineItem({ marco, isLeft,onClick }: TimelineItemProps) {
     <div
       className={`mb-16 flex justify-between items-center w-full ${isLeft ? "flex-row-reverse" : ""}`}
     >
-      {/* O Fantasma */}
+     
       <div className="w-5/12"></div>
 
-      {/* Bolinha Neon */}
       <div className="z-10 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_20px_#22d3ee] border-2 border-slate-900"></div>
 
-      {/* O Card Principal - Adicionamos a classe 'group' e 'cursor-pointer' aqui */}
       <div 
       onClick={onClick}
       className="group w-5/12 bg-slate-800/30 backdrop-blur-md rounded-2xl border border-slate-700/50 hover:border-cyan-500/50 hover:bg-slate-800/50 hover:-translate-y-2 transition-all duration-300 shadow-xl overflow-hidden cursor-pointer">
-        {/* Container da Imagem com o Efeito Ímã */}
         <div
           className={`h-48 w-full overflow-hidden ${marco.ehLogo ? "bg-slate-900/50" : ""}`}
         >
-          {/* Se for logo, põe um fundinho escuro pra não ficar esquisito se sobrar borda */}
 
           <img
             src={marco.imagem}
             alt={marco.titulo}
-            // AQUI ESTÁ A MÁGICA:
-            // Se 'ehLogo' for true, usa 'object-contain' e um padding (p-4).
-            // Se NÃO for (for foto), usa 'object-cover' pra preencher tudo bonito.
+            
             className={`w-full h-full transition-transform duration-500 group-hover:scale-110 ${
               marco.ehLogo ? "object-contain p-4" : "object-cover"
             }`}
           />
         </div>
 
-        {/* Textos do Card */}
         <div className="p-6">
           <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-cyan-300 uppercase bg-cyan-500/10 rounded-full border border-cyan-500/20">
             {marco.ano}
@@ -48,7 +41,6 @@ export function TimelineItem({ marco, isLeft,onClick }: TimelineItemProps) {
             {marco.titulo}
           </h3>
 
-          {/* Coloquei um pedacinho da descrição cortada pra dar vontade de clicar */}
           <p className="text-slate-400 mt-2 text-sm line-clamp-2">
             {marco.descricao}
           </p>
