@@ -52,7 +52,7 @@ export function Reflections() {
             <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest">Análise de Fellipe</h3>
           </div>
           <p className="text-slate-300 leading-relaxed italic">
-            "a completar"
+            "Enquanto a interface dita a experiência visual, a evolução da Web foi verdadeiramente impulsionada pela transformação nos bastidores. Deixamos para trás a simples entrega de documentos estáticos para arquitetar ecossistemas complexos, baseados em APIs robustas e processamento de dados em larga escala. O Back-end moderno é o motor invisível que garante a segurança, a lógica de negócios e a escalabilidade necessárias para sustentar a hiperconectividade atual."
           </p>
         </motion.div>
 

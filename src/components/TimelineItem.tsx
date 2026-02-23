@@ -23,15 +23,14 @@ export function TimelineItem({ marco, isLeft, onClick }: Props) {
           className="group relative overflow-hidden rounded-[2rem] bg-slate-900/60 border border-white/10 backdrop-blur-xl hover:border-cyan-500/40 transition-all duration-500 cursor-pointer"
         >
           {/* FOTO NO SCROLL - ÁREA AJUSTADA */}
-          {/* Aumentei a altura para h-52 e centralizei o conteúdo */}
-          <div className="h-52 overflow-hidden bg-black/30 flex items-center justify-center relative">
-             {/* Adicionei um gradiente sutil na base para integrar melhor com o texto abaixo */}
+          <div className={`h-52 overflow-hidden flex items-center justify-center relative ${marco.ehLogo ? "bg-slate-900/80" : "bg-black/30"}`}>
              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent z-10 pointer-events-none"/>
             <img
               src={marco.imagem}
               alt={marco.titulo}
-              // USEI OBJECT-CONTAIN AQUI: A imagem inteira vai aparecer sem cortes
-              className="w-full h-full object-contain p-2 opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 relative z-0"
+              className={`w-full h-full transition-all duration-700 group-hover:scale-105 relative z-0 opacity-60 group-hover:opacity-100 ${
+                marco.ehLogo ? "object-contain p-6" : "object-cover"
+              }`}
             />
           </div>
 
