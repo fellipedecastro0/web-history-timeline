@@ -1,11 +1,6 @@
 import './App.css'
 import { TimelineItem } from './components/TimelineItem';
 import { useState } from 'react';
-import { Modal } from './components/Modal';
-import { Reflections } from './components/Reflections';
-import { ParticlesBackground } from './components/ParticlesBackground';
-import { Loader } from './components/Loader';
-import { motion, useScroll, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
 
 export type MileStone = {
   id: number;
@@ -16,7 +11,6 @@ export type MileStone = {
   ehLogo?: boolean;
 }
 
-// MANTIDO: O Array do Felipe é a fonte da verdade
 const marcosDaWeb: MileStone[] = [
     {
         id: 1,
@@ -78,78 +72,21 @@ const marcosDaWeb: MileStone[] = [
         imagem: '/imagens/ia.jpg'
       }
 ];
-
 function App() {
-  const [loading, setLoading] = useState(true);
   const [marcoSelecionado, setMarcoSelecionado] = useState<MileStone | null>(null);
 
-  // Spotlight dinâmico (segue o mouse do usuário)
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  function handleMouseMove({ clientX, clientY, currentTarget }: any) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <div onMouseMove={handleMouseMove} className="min-h-screen bg-[#030712] text-white font-sans relative overflow-x-hidden">
 
-      {/* 1. Loader: O "Boot" do sistema */}
-      <AnimatePresence>
-        {loading && <Loader onFinished={() => setLoading(false)} />}
-      </AnimatePresence>
-
-      {/* 2. Spotlight: Luz que segue o mouse por trás do conteúdo */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px z-0"
-        style={{
-          background: `radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(34, 211, 238, 0.1), transparent 80%)`,
-        }}
-      />
-
-      {/* 3. Fundo do Felipe + Partículas do Johnn */}
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#111827] to-black -z-20" />
-      <ParticlesBackground />
-
-      {/* 4. Barra de Progresso Elite */}
-      <motion.div className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-400 z-[100] origin-left shadow-[0_0_15px_#06b6d4]" style={{ scaleX }} />
-
-      {/* 5. Conteúdo com Z-Index para não sumir atrás das partículas */}
-      <div className="relative z-10 py-16 px-4">
-
-        <motion.header
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-32 text-center"
-        >
-          <h1 className="text-5xl md:text-8xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 tracking-tighter uppercase italic">
-            Web History
           </h1>
-          <div className="h-1 w-24 bg-cyan-500 mx-auto mb-6" />
-          <p className="text-cyan-400 font-mono tracking-[0.4em] text-xs uppercase opacity-70">Sistemas Hiperconectados</p>
-        </motion.header>
 
-        <div className="max-w-6xl mx-auto relative pb-20">
-          {/* MANTIDO: A Linha Vertical do Felipe */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-[2px] h-full bg-gradient-to-b from-transparent via-cyan-500/50 to-transparent"></div>
 
-          {marcosDaWeb.map((marco, index) => (
             <TimelineItem
                 key={marco.id}
                 marco={marco}
-                isLeft={index % 2 === 0}
                 onClick={() => setMarcoSelecionado(marco)}
             />
-          ))}
-        </div>
 
-        <Reflections />
-        <Modal item={marcoSelecionado} onClose={() => setMarcoSelecionado(null)} />
       </div>
     </div>
   );
