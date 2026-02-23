@@ -52,7 +52,7 @@ export function Reflections() {
             <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest">Análise de Fellipe</h3>
           </div>
           <p className="text-slate-300 leading-relaxed italic">
-            "O desenvolvimento desta plataforma demonstra como a componentização e o estado reativo transformaram a manutenção de sistemas. A base sólida que construímos permite que a arte e a lógica coexistam sem conflitos."
+            "a completar"
           </p>
         </motion.div>
 

@@ -1,5 +1,5 @@
 // src/components/Loader.tsx
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function Loader({ onFinished }: { onFinished: () => void }) {
