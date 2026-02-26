@@ -1,11 +1,12 @@
 import './App.css';
 import { TimelineItem } from './components/TimelineItem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // Adicionado useEffect para o timer
 import { Modal } from './components/Modal';
 import { Reflections } from './components/Reflections';
-import { ParticlesBackground } from './components/ParticlesBackground';
+// Removido: import { ParticlesBackground } from './components/ParticlesBackground';
 import { Loader } from './components/Loader';
-import { motion, useScroll, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { Clock, History, Hourglass, Monitor } from "lucide-react"; // Ícones para a transformação
 
 export type MileStone = {
   id: number;
@@ -14,8 +15,10 @@ export type MileStone = {
   descricao: string;
   imagem: string;
   ehLogo?: boolean;
+  ehClaro?: boolean;
 }
 
+// --- SEU CONTEÚDO ORIGINAL COMPLETO PRESERVADO ---
 const marcosDaWeb: MileStone[] = [
   {
     id: 1,
@@ -46,6 +49,7 @@ const marcosDaWeb: MileStone[] = [
     titulo: 'A Era da Web 2.0 e o AJAX',
     descricao: 'A internet deixa de ser uma via de mão única. O conceito de Web 2.0 foca no conteúdo gerado pelo usuário, dando origem às grandes redes sociais e blogs. Tecnicamente, a adoção do AJAX (Asynchronous JavaScript and XML) revoluciona a experiência: páginas como o Gmail e o Google Maps passam a atualizar dados em tempo real sem precisar recarregar a página inteira.',
     imagem: '/imagens/og-gmail.jpg',
+    ehClaro: true,
   },
   {
     id: 5,
@@ -81,41 +85,62 @@ const marcosDaWeb: MileStone[] = [
 function App() {
   const [loading, setLoading] = useState(true);
   const [marcoSelecionado, setMarcoSelecionado] = useState<MileStone | null>(null);
+  const [bgIndex, setBgIndex] = useState(0);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  function handleMouseMove({ clientX, clientY, currentTarget }: any) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
+  // Lógica para alternar as imagens de fundo (Relógios/História)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % 4);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  return (
-    <div onMouseMove={handleMouseMove} className="min-h-screen bg-[#030712] text-white font-sans relative">
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["#020617", "#000000"]
+  );
 
+  const bgIcons = [
+    <Clock size={400} strokeWidth={0.5} />,
+    <History size={400} strokeWidth={0.5} />,
+    <Hourglass size={400} strokeWidth={0.5} />,
+    <Monitor size={400} strokeWidth={0.5} />
+  ];
+
+  return (
+    <motion.div
+      style={{ backgroundColor }}
+      className="min-h-screen text-white font-sans relative transition-colors duration-500 overflow-x-hidden"
+    >
       <AnimatePresence>
         {loading && <Loader onFinished={() => setLoading(false)} />}
       </AnimatePresence>
 
-      <motion.div
-        className="pointer-events-none absolute -inset-px z-0"
-        style={{
-          background: `radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(34, 211, 238, 0.1), transparent 80%)`,
-        }}
-      />
-
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#111827] to-black -z-20" />
-      <ParticlesBackground />
+      {/* ANIMAÇÃO DE FUNDO: Imagens/Relógios em transformação */}
+      <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={bgIndex}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            className="text-cyan-500"
+          >
+            {bgIcons[bgIndex]}
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       <motion.div className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-400 z-[100] origin-left" style={{ scaleX }} />
 
       <div className="relative z-10 py-16 px-4">
         <motion.header initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-32 text-center">
-          <h1 className="text-5xl md:text-8xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 uppercase italic">
+          <h1 className="text-5xl md:text-8xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 uppercase italic tracking-tighter">
             Web History
           </h1>
           <div className="h-1 w-24 bg-cyan-500 mx-auto mb-6" />
@@ -132,13 +157,12 @@ function App() {
         <Reflections />
       </div>
 
-      {/* MODAL FORA DO PADDING PARA NÃO CORTAR */}
       <AnimatePresence>
         {marcoSelecionado && (
           <Modal item={marcoSelecionado} onClose={() => setMarcoSelecionado(null)} />
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }
 
