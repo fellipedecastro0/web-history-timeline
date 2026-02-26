@@ -25,7 +25,7 @@ export function Modal({ item, onClose }: ModalProps) {
       <div className="relative bg-slate-950 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-in zoom-in duration-300 text-white border border-white/10">
         <button
           onClick={onClose}
-          // MUDANÇA: bg-black/5 -> bg-white/10 para ser visível no fundo escuro
+         
           className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10"
         >
           {/* MUDANÇA: text-gray-800 -> text-white */}

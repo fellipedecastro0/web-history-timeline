@@ -1,73 +1,27 @@
-# React + TypeScript + Vite
+#  Web History Timeline
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma jornada interativa pela evolução da World Wide Web e seu impacto na Engenharia de Software moderna. 
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido como um estudo aprofundado sobre como deixamos de ser entregadores de documentos estáticos para nos tornarmos arquitetos de ecossistemas hiperconectados, culminando na atual era da Inteligência Artificial.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Acesso ao Projeto
+**Confira o projeto rodando ao vivo:** [https://web-history-time.netlify.app](https://web-history-time.netlify.app)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+* **[React](https://reactjs.org/)** + **[Vite](https://vitejs.dev/)**: Para uma interface rápida e componentizada.
+* **[TypeScript](https://www.typescriptlang.org/)**: Tipagem estática para maior segurança e previsibilidade do código.
+* **[Tailwind CSS](https://tailwindcss.com/)**: Estilização utilitária para um design responsivo e moderno (com pegada cyberpunk).
+* **[Framer Motion](https://www.framer.com/motion/)**: Biblioteca de animações baseada em scroll e interações do usuário.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+##  Reflexões e Impacto
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Além da linha do tempo, o projeto conta com uma área de reflexão técnica da equipe, destacando:
+* A mudança de paradigma nos protocolos e arquiteturas de Back-end e Front-end.
+* O futuro do desenvolvimento com a **Inteligência Artificial atuando como Co-piloto**, potencializando a criação e acelerando o desenvolvimento de software.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+##  Equipe
+* **Fellipe** - Desenvolvedor & Analista
+* **Johnn** - Desenvolvedor & Analista

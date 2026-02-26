@@ -1,12 +1,11 @@
 import './App.css';
 import { TimelineItem } from './components/TimelineItem';
-import { useState, useEffect } from 'react'; // Adicionado useEffect para o timer
+import { useState, useEffect } from 'react'; 
 import { Modal } from './components/Modal';
 import { Reflections } from './components/Reflections';
-// Removido: import { ParticlesBackground } from './components/ParticlesBackground';
 import { Loader } from './components/Loader';
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Clock, History, Hourglass, Monitor } from "lucide-react"; // Ícones para a transformação
+import { Clock, History, Hourglass, Monitor } from "lucide-react"; 
 
 export type MileStone = {
   id: number;
@@ -18,7 +17,6 @@ export type MileStone = {
   ehClaro?: boolean;
 }
 
-// --- SEU CONTEÚDO ORIGINAL COMPLETO PRESERVADO ---
 const marcosDaWeb: MileStone[] = [
   {
     id: 1,
