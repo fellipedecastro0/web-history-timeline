@@ -6,7 +6,7 @@ interface ModalProps {
     titulo: string;
     descricao: string;
     imagem: string;
-    ehLogo?: boolean; // 1. Adicionamos a permissão pro logo aqui
+    ehLogo?: boolean;
   } | null;
   onClose: () => void;
 }
@@ -17,36 +17,40 @@ export function Modal({ item, onClose }: ModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-in fade-in duration-300"
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300"
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-in zoom-in duration-300 text-gray-900">
+      {/* MUDANÇA: bg-white -> bg-slate-950 | text-gray-900 -> text-white */}
+      <div className="relative bg-slate-950 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-in zoom-in duration-300 text-white border border-white/10">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 bg-black/5 hover:bg-black/10 rounded-full transition-colors z-10"
+          // MUDANÇA: bg-black/5 -> bg-white/10 para ser visível no fundo escuro
+          className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10"
         >
-          <X size={24} className="text-gray-800" />
+          {/* MUDANÇA: text-gray-800 -> text-white */}
+          <X size={24} className="text-white" />
         </button>
 
         <div className="flex flex-col md:flex-row">
-          {/* Imagem do Marco com fundo escuro se for Logo */}
-          <div className={`w-full md:w-1/2 h-64 md:h-auto flex items-center justify-center ${item.ehLogo ? "bg-slate-900" : "bg-gray-100"}`}>
+          <div className={`w-full md:w-1/2 h-64 md:h-auto flex items-center justify-center ${item.ehLogo ? "bg-slate-900" : "bg-black"}`}>
             <img
               src={item.imagem}
               alt={item.titulo}
-            
               className={`w-full h-full ${item.ehLogo ? "object-contain p-8" : "object-cover"}`}
             />
           </div>
-          <div className="p-8 md:w-1/2 flex flex-col justify-center">
-            <span className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2">
+
+          {/* ÁREA DE TEXTO: Fundo Preto e Letras Claras */}
+          <div className="p-8 md:w-1/2 flex flex-col justify-center bg-slate-950">
+            <span className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-2">
               {item.ano}
             </span>
             <h2 className="text-2xl font-black mb-4 leading-tight">
               {item.titulo}
             </h2>
-            <p className="text-gray-600 leading-relaxed text-sm">
+            {/* MUDANÇA: text-gray-600 -> text-slate-300 para melhor contraste */}
+            <p className="text-slate-300 leading-relaxed text-sm">
               {item.descricao}
             </p>
           </div>
