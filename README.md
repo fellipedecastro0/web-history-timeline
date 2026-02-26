@@ -24,5 +24,5 @@ Além da linha do tempo, o projeto conta com uma área de reflexão técnica da 
 * O futuro do desenvolvimento com a **Inteligência Artificial atuando como Co-piloto**, potencializando a criação e acelerando o desenvolvimento de software.
 
 ##  Equipe
-* **Fellipe** - Desenvolvedor & Analista
-* **Johnn** - Desenvolvedor & Analista
+* **Fellipe de Castro Oliveira** - Desenvolvedor & Analista
+* **Jhonathan Magalhães da Cruz** - Desenvolvedor & Analista
